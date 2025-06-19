@@ -11,7 +11,7 @@ require('dotenv').config();
 app.use(express.json());
 app.use(cookieParser())
 app.use(cors({
-    origin:[ 'http://localhost:5173','https://front-end-e-commerce-eosin.vercel.app'],
+    origin:[ 'http://localhost:5173','https://aurellia-e-commerce-eosin.vercel.app'],
     credentials: true,
 }));
 
