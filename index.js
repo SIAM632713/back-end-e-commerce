@@ -20,12 +20,14 @@ const Productroute=require('./src/products/product.route')
 const Reviewroute=require('./src/reviews/review.route')
 const Orderroute=require('./src/orders/order.route')
 const Stateroute=require('./src/stats/state.route')
+const uploadRoute=require("./src/uploadRoute/uploadRoute")
 
 app.use('/api/auth',Userroute)
 app.use('/api/product',Productroute)
 app.use('/api/review',Reviewroute)
 app.use('/api/order',Orderroute)
 app.use('/api/state',Stateroute)
+app.use("/api/upload",uploadRoute)
 
 async function main(){
     await mongoose.connect(process.env.UB_URL);
@@ -36,11 +38,6 @@ async function main(){
 }
 main().then(()=>console.log("mongoDB connected")).catch(err => console.log(err));
 
-
-const UploadImage=require('./src/utilitis/UploadImage')
-app.post('/uploadImage',async (req,res)=>{
-    await UploadImage(req.body.image).then((url)=>res.send(url)).catch((err)=>res.status(500).send(err));
-})
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
